@@ -40,17 +40,15 @@ def main():
     file.write(str(tasty)+"\n")
     file.close()
 
-
-
 def stop(position, stops, stoplocs, rB, rF):
     # Pretty terrible existence of both a binary search as well as a sort here.
     # First target for optimization
     usable = stops[bisect.bisect_right(stoplocs, position):]
     usable.sort(key=lambda i: i[1], reverse=True)
 
-    tasty = (usable[0][0] - position) * (rF-rB) * usable[0][1]
+    newtaste = (usable[0][0] - position) * (rF-rB) * usable[0][1]
     position = usable[0][0]
 
-    return (position, tasty)
+    return (position, newtaste)
 
 main()
